@@ -1,0 +1,43 @@
+@media only screen and (min-width: 970px) {
+    #restaurants-list li {
+        width: 45%;
+        margin: 9px
+    }
+
+    #restaurants-list {
+        padding: 15px 0 15px;
+    }
+
+    /* ====================== Restaurant Details ====================== */
+    .inside header {
+        position: fixed;
+        z-index: 1;
+    }
+
+    .inside #map-container {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        top: 175px;
+        right: 0;
+    }
+
+    #restaurant-details {
+        width: 50%;
+        padding-top: 167px;
+    }
+
+    .inside #footer {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    #restaurants-list li {
+        width: 21%;
+    }
+
+    #restaurants-list .restaurant-img {
+      min-height: 0;
+    }
+}

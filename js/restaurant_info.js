@@ -85,18 +85,24 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
   name.className = 'header-style';
+  name.tabIndex = 0;
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.tabIndex = 0;
+  address.setAttribute('aria-label', "The address of " + restaurant.name + " restaurant is " + restaurant.address);
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute('alt', 'Photograph of ' + restaurant.name + ' restaurant');
   image.setAttribute('title', restaurant.name);
+  image.tabIndex = 0;
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.tabIndex = 0;
+  cuisine.setAttribute('aria-label', "The cuisine type of " + restaurant.name + " restaurant is " + restaurant.cuisine_type);
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -122,6 +128,9 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     time.innerHTML = operatingHours[key];
     row.appendChild(time);
 
+    row.tabIndex = 0;
+    row.setAttribute('aria-label', key + " times: " + operatingHours[key]);
+
     hours.appendChild(row);
   }
 }
@@ -134,6 +143,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
   title.className = 'side-header-style';
+  title.tabIndex = 0;
   container.appendChild(title);
 
   if (!reviews) {
@@ -173,6 +183,9 @@ createReviewHTML = (review) => {
   comments.innerHTML = review.comments;
   comments.className = 'comment';
   li.appendChild(comments);
+
+  li.setAttribute('aria-label', `${review.name} with rating ${review.rating} at ${review.date} says ${review.comments}`);
+  li.tabIndex = 0;
 
   return li;
 }

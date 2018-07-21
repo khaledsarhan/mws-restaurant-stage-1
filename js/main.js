@@ -11,7 +11,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap(); // added 
   fetchNeighborhoods();
   fetchCuisines();
+  registerSW();
 });
+
+function registerSW() {
+  if (!navigator.serviceWorker) return;
+  navigator.serviceWorker.register('./sw.js').then(function (reg) {
+    if (reg.installing) {
+      console.log('SW installing');
+    } else if (reg.waiting) {
+      console.log('SW installed');
+    } else if (reg.active) {
+      console.log('SW active');
+    }
+    console.log('Registration succeeded, scop is: ' + reg.scope);
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
